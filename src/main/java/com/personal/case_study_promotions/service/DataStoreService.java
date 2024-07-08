@@ -60,7 +60,10 @@ public class DataStoreService {
 
         consistentHashing.addNodes(nodeNames);
         this.executor = Executors.newFixedThreadPool(numberOfNodes);
+        long startTime = System.currentTimeMillis();
         loadData(csvConfigPath); // assuming this file will be replaced every 30 mins
+        long endTime = System.currentTimeMillis();
+        System.out.println("Time taken to load data: " + (endTime - startTime) + " ms");
         System.out.println("Data store initialized");
     }
 

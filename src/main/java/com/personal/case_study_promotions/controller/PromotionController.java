@@ -1,5 +1,6 @@
 package com.personal.case_study_promotions.controller;
 
+import java.lang.reflect.Method;
 import java.util.Date;
 
 import org.springframework.http.HttpStatus;
@@ -23,14 +24,17 @@ public class PromotionController {
         this.dataStore = dataStore;
     }
 
-    @GetMapping("/{id}")
+    @RequestMapping(
+            value = "/{id}",
+            method = RequestMethod.GET,
+            produces = {"application/json"})
     public ResponseEntity<String> getPromotion(@PathVariable String id) throws JsonProcessingException {
-        Date startTime = new Date();
+        long startTime = System.nanoTime();;
         Item result = dataStore.getData(id);
         if (result != null) {
             String resultJson = objectMapper.writeValueAsString(result);
-            Date endTime = new Date();
-            System.out.println("Time taken to fetch the record: " + (endTime.getTime() - startTime.getTime()) + "ms");
+            long endTime = System.nanoTime();
+            System.out.println("Time taken to fetch the record: " + ((endTime - startTime) / 1000) + " microseconds");
             return ResponseEntity.ok(resultJson);
         } else {
             return ResponseEntity.status(HttpStatus.NOT_FOUND).body("No record found for id: " + id);
