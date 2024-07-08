@@ -35,7 +35,8 @@ The data is refreshed every 30 minutes.
 - **Run the application**: Run `mvn spring-boot:run` to start the application.
 - **Access the application**: Open `http://localhost:8080` in your browser.
 - Every time the application is started, it reads the data from the CSV file and stores it in the cache.
-- The data is refreshed every 30 minutes.
+- The data is refreshed every 30 minutes. The new file should be placed at 'src/main/resources/' location with name 'promotions.csv'. And the system will pick the file. 
+- 
 
 ## API Endpoints
 
@@ -43,7 +44,7 @@ The data is refreshed every 30 minutes.
 Example: 
 1. From command prompt
 - Request: curl -X 'GET' 'http://localhost:8080/promotions/29b25968-e9fa-4b86-b42f-6bd684efe8d0'  -H 'accept: application/json'
-- Response: {"id":"29b25968-e9fa-4b86-b42f-6bd684efe8d0","price":76.825372,"expiryDate":"2018-10-06 16:15:16"}
+- Response: {"id":"29b25968-e9fa-4b86-b42f-6bd684efe8d0","price":76.825372,"expiryDate":"2018-10-06 16:15:16"} 
 2. From browser
 - Request: http://localhost:8080/promotions/29b25968-e9fa-4b86-b42f-6bd684efe8d0
 - Response: {"id":"29b25968-e9fa-4b86-b42f-6bd684efe8d0","price":76.825372,"expiryDate":"2018-10-06 16:15:16"}
